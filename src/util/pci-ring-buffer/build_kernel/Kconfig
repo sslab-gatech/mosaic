@@ -1,0 +1,10 @@
+#
+# pci ring buffer support
+#
+config PCI_RING_BUFFER
+	tristate "ring buffer over PCIe bus based on SCIF"
+	default m
+
+config PCI_RING_BUFFER_TEST
+	tristate "test master ring buffer"
+	default m

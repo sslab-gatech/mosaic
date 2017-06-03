@@ -1,0 +1,10 @@
+[ ] barrier between elm and rb->head at put() operation
+[ ] generate Chrome tracing json?
+    https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview
+[ ] reporting if a ring buffer is stucked due to element status
+[ ] vectored memcopy in kernel mode
+[ ] DMA-based copy in master ring buffer
+[ ] contention management of DMA ops
+[ ] smater idle polling (vIC, or similar)
+[ ] tombstone?
+[O] shadow ring buffer support in kernel mode

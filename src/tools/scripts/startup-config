@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+# Clears pagecache, dentries, and inodes
+echo 3 > /proc/sys/vm/drop_caches
+
+# disables automatic numa-balancing
+echo 0 > /proc/sys/kernel/numa_balancing
