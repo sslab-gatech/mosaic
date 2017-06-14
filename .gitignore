@@ -16,5 +16,5 @@
 .ycm_extra_conf.*
 
 build/
-data/perf-events/
+data/
 log/
