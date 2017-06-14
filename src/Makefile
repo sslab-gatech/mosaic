@@ -1,3 +1,5 @@
+SHELL:=/bin/bash
+
 PROJ_ROOT := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))/..
 BUILD_DIR := ${PROJ_ROOT}/build
 SRC_DIR := ${PROJ_ROOT}/src
