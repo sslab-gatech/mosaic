@@ -215,7 +215,7 @@ def generate_graph_in_memory(opts):
             conf.getGlobalsDir(opts.dataset, True), "vertex_global_to_orig.dat")
         shutil.copyfile(unweighted_global_to_orig, weighted_global_to_orig)
 
-    for i in range(0, len(conf.SG_GRC_PARTITION_DIRS)):
+    for i in range(0, len(conf.SG_GRC_OUTPUT_DIRS)):
         meta_dir = conf.getGrcMetaDir(opts.dataset, i, opts.weighted_output)
         tile_dir = conf.getGrcTileDir(opts.dataset, i, opts.weighted_output)
 

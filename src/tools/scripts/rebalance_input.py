@@ -71,6 +71,8 @@ def rebalance(opts):
         vertex_engine_meta_dir = conf.getMicSubdir(
                 conf.SG_DATAPATH_VERTEX_ENGINE[i], opts.dataset, "meta", i,
                 opts.weighted)
+        if(edge_engine_meta_dir == vertex_engine_meta_dir):
+            continue
 
         if not os.path.exists(edge_engine_meta_dir):
             utils.mkdirp(edge_engine_meta_dir, conf.FILE_GROUP)
