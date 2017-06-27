@@ -60,7 +60,7 @@ cmake:
 	exit
 
 .PHONY: make
-make: ${CPU_TOPOLOGY_MAPS}
+make: cpumaps
 	@if [[ ! -e ${BUILD_DIR} ]]; then make cmake; fi
 	@for ARCH in $(TARGET_ARCHS); do ( : ; \
 		for MODE in $(BUILD_MODES); do ( : ; \
@@ -72,6 +72,8 @@ make: ${CPU_TOPOLOGY_MAPS}
 		); done; \
 	); done
 #$(MAKE)  #-j${NLCPU}; \
+
+cpumaps: ${CPU_TOPOLOGY_MAPS}
 
 ${SRC_DIR}/include/util/cpu_topology_host.h:
 	${CPU_TOPOLOGY} /proc/cpuinfo c > $@
