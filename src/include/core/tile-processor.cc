@@ -254,9 +254,11 @@ namespace core {
 
     // if this processor is a leader, init the pointer offset table
     if (tile_partition_id_ == 0) {
-      // wait until tile_block is completely consumed
-      sg_assert(tile_info_->meta.tile_block == NULL,
-                "tile_info_->meta.tile_block was not NULL!\n");
+      if (!config_.in_memory_mode) {
+        // wait until tile_block is completely consumed
+        sg_assert(tile_info_->meta.tile_block == NULL,
+                  "tile_info_->meta.tile_block was not NULL!\n");
+      }
       tile_info_->meta.fetch_refcnt = vertex_edge_block_->num_tile_partition;
       tile_info_->meta.process_refcnt = vertex_edge_block_->num_tile_partition;
       tile_info_->meta.tile_block = vertex_edge_block_;

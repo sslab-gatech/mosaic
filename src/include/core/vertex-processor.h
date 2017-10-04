@@ -37,6 +37,7 @@ namespace core {
     int init();
     int start();
     void join();
+    void joinIndexReaders();
     void resetRound(size_t count_active_tiles);
 
     void sendActiveTiles(size_t count_active_tiles);

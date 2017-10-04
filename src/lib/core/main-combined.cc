@@ -376,7 +376,9 @@ static void executeEngine(config_vertex_domain_t& config_vertex,
   core::VertexDomain <APP, TVertexType, TVertexIdType> vertex_domain(
       config_vertex);
   vertex_domain.init();
+  sg_log2("Init done\n");
   vertex_domain.start();
+  sg_log2("Start done\n");
 
   for (int i = 0; i < config_vertex.count_edge_processors; ++i) {
     edge_processors[i]->initActiveTiles();

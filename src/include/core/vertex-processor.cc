@@ -19,9 +19,9 @@ namespace core {
         index_reader_progress_(config_.count_index_readers) {
     pthread_barrier_init(&barrier_readers_, NULL,
                          config_.count_vertex_fetchers);
-
     pthread_barrier_init(&fetchers_barrier_, NULL,
                          config_.count_vertex_fetchers);
+
   }
 
   template <class APP, typename TVertexType, typename TVertexIdType>
@@ -260,16 +260,7 @@ namespace core {
       thread->start();
       thread->setName("IndexReader_" + std::to_string(edge_engine_index_) +
                       "_" + std::to_string(i));
-      threads_.push_back(thread);
       index_readers_.push_back(thread);
-    }
-
-    // - in the in-memory mode, wait for everything to be loaded first:
-    if (config_.in_memory_mode) {
-      for (const auto& it : threads_) {
-        it->join();
-        delete (it);
-      }
     }
 
     // launch vertex updaters
@@ -316,8 +307,20 @@ namespace core {
     }
   }
 
+  template<class APP, typename TVertexType, typename TVertexIdType>
+  void VertexProcessor<APP, TVertexType, TVertexIdType>::joinIndexReaders() {
+    for (const auto& it : index_readers_) {
+      it->join();
+      delete (it);
+    }
+  };
+
   template <class APP, typename TVertexType, typename TVertexIdType>
   void VertexProcessor<APP, TVertexType, TVertexIdType>::join() {
+    if (!config_.in_memory_mode) {
+      joinIndexReaders();
+    }
+
     for (const auto& it : threads_) {
       it->join();
       delete (it);

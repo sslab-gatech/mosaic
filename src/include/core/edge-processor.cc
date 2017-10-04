@@ -334,6 +334,7 @@ namespace core {
         delete (it);
       }
       sg_log2("Done reading\n");
+      threads_.clear();
     }
 
     // launch tile processor

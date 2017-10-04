@@ -260,6 +260,14 @@ namespace core {
     for (auto& it : vp_) {
       it->start();
     }
+
+    // - in the in-memory mode, wait for everything to be loaded first:
+    if (config_.in_memory_mode) {
+      sg_log2("Wait for index readers to be done.\n");
+      for (auto& it : vp_) {
+        it->joinIndexReaders();
+      }
+    }
   }
 
   template <class APP, typename TVertexType, typename TVertexIdType>
